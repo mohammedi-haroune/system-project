@@ -10,9 +10,14 @@
 #include <unistd.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parc/question4
+=======
+#define shared "shared"
+
+>>>>>>> parc/question5
 //copied from the man semctl
 union semun {
   int              val;    /* Value for SETVAL */
@@ -71,10 +76,14 @@ int P(int semid, unsigned short id) {
   op.sem_num= id;  /* semaphore number */
   op.sem_op =-1;   /* semaphore operation */
 <<<<<<< HEAD
+<<<<<<< HEAD
   op.sem_flg=SEM_UNDO;  /* operation flags */
 =======
   op.sem_flg=0;  /* operation flags */
 >>>>>>> parc/question4
+=======
+  op.sem_flg=0;  /* operation flags */
+>>>>>>> parc/question5
 
   return semop(semid, &op, 1);
 }
@@ -103,6 +112,7 @@ int Z(int semid, unsigned short id) {
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 int Ptimed(int semid, unsigned short id, int seconds) {
@@ -118,3 +128,106 @@ int Ptimed(int semid, unsigned short id, int seconds) {
 }
 
 >>>>>>> parc/question4
+=======
+
+// shared memory helpers
+
+
+int createshm(key_t key, size_t __size) {
+  int shmid = shmget(key,__size,IPC_CREAT|IPC_EXCL|0666);
+  if(shmid == -1){
+    //la zone existe deja !
+    shmid=shmget(key,__size,0); //recuperer son id
+    printf("Segment memoire existe deja id:%d\n",shmid);
+  } else printf("Segment memoire id:%d\n",shmid);
+  //tout les processus doivent appeler shmat pour attacher une adresse a la
+  //zone memoire le pointeur permet par la suite d'ecrire directement des
+  //donnes dans la zone partagÈe.
+  return shmid;
+}
+
+typedef struct data{
+  int nbEmbarques;
+  int nbDebarques;
+} state;
+
+void printState(state* s) {
+  printf("State : nbEmbarques = %d, nbDebarques = %d\n", s->nbEmbarques, s->nbDebarques);
+}
+
+int getNbEmbarques(int shmid) {
+  //attach an state structure in order to put in the buffer
+  state *s = NULL;
+  s = shmat(shmid,s,0);
+  printf("lecture nbEmbarques: ");
+  printState(s);
+  return s->nbEmbarques;
+}
+
+
+int getNbDebarques(int shmid) {
+  //attach an state structure in order to put in the buffer
+  state *s = NULL;
+  s = shmat(shmid,s,0);
+  printf("lecture nbDebarques: ");
+  printState(s);
+  return s->nbDebarques;
+}
+
+void setNbEmbarques(int shmid, int nb) {
+  //attach an state structure in order to put in the buffer
+  state *s = NULL;
+  s = shmat(shmid,s,0);
+  s->nbEmbarques = nb;
+  printf("ecriture nbEmbarques: ");
+  printState(s);
+}
+
+void setNbDebarques(int shmid, int nb) {
+  //attach an state structure in order to put in the buffer
+  state *s = NULL;
+  s = shmat(shmid,s,0);
+  s->nbDebarques= nb;
+  printf("ecriture nbDebarques: ");
+  printState(s);
+}
+
+int getNConf(int semid, int id) {
+  return semctl(semid , id, GETNCNT);
+}
+
+void join(int n) {
+  key_t key;
+  //this assumes that the file exist in the current directory
+  if ((key = ftok(shared, 'j')) == -1) {
+    perror("cannot create key");
+    exit(EXIT_FAILURE);
+  }
+
+  int semid = semget(key, 1, IPC_CREAT|IPC_EXCL|0666);
+  if (semid == -1) {
+    semid = semget(key, 1, 0);
+    if (semid == -1) {
+      perror("cannot create semid ");
+      exit(EXIT_FAILURE);
+    }
+  } else {
+    //if the join s√©maphore did't exist then initilaze it to zero
+    initsem(semid, 0, 0);
+  }
+
+  //get NCONF : number of process waiting for increase
+  int waiting = getNConf(semid, 0);
+
+  //if the number of waiting is N (couting the current process) then free them. otherwise wait
+  if (waiting == n - 1) {
+    for(int i = 0; i < waiting; i++) {
+      V(semid, 0);
+    }
+    //drop the semaphore. this gives the access for eventual other joins
+    dropsem(semid);
+  } else {
+    P(semid, 0);
+  }
+}
+>>>>>>> parc/question5
