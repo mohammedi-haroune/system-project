@@ -22,8 +22,13 @@ int main() {
   int semid = createsem(key, 6);
   int shmid = createshm(key, sizeof(state));
 
+  P(semid, mutex3);
+  inscription(shmid);
 
-  while(1){
+
+  while(peutTourner(shmid)){
+    V(semid, mutex3);
+
     P(semid, semEmbarquement); //faire la chaine pour monter, attendre d’être libéré par le processus voiture
 
     embarquement(); //affiche un message : “client pid: je vais monter”
@@ -63,7 +68,13 @@ int main() {
     V(semid, mutex2);
 
     sleep(rand() % 2);
+
+    P(semid, mutex3);
+    finTour(shmid);
+    //P, V pour laisser la chance aux autres pour utliser les variables nbClients, clients, tours
   }
+  //si la condition est fausse on doit quand meme libérer le mutex3
+  V(semid, mutex3);
 }
 
 void enBalade() {

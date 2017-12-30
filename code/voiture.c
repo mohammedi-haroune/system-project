@@ -23,12 +23,13 @@ int main() {
     perror("cannot create key");
     exit(EXIT_FAILURE);
   }
-  int semid = createsem(key, 6);
+  int semid = createsem(key, SEMNUM);
   init_semaphores(semid);
 
   int shmid = createshm(key, sizeof(state));
   setNbEmbarques(shmid, 0);
   setNbDebarques(shmid, 0);
+  initialiseClients(shmid);
 
   int i = 1;
   while (1) {
@@ -48,11 +49,12 @@ int main() {
 }
 
 void init_semaphores(int semid) {
-  ushort values[] = {1, 1, 0, 0, 0, 0};
-  initall(semid, 6, values);
+  ushort values[] = {1, 1, 1, 0, 0, 0, 0};
+  initall(semid, SEMNUM, values);
   printf("Initialisation des sémaphores : \n");
   printf("mutex1          --> %d\n", values[mutex1]);
-  printf("mutex1          --> %d\n", values[mutex2]);
+  printf("mutex2          --> %d\n", values[mutex2]);
+  printf("mutex3          --> %d\n", values[mutex3]);
   printf("semEmbarquement --> %d\n", values[semEmbarquement]);
   printf("semDebarquement --> %d\n", values[semDebarquement]);
   printf("semTousAbord    --> %d\n", values[semTousAbord]);
@@ -71,4 +73,3 @@ void rouler() {
 void chargement(int i) {
   printf("nouveau chargement tournée numéro %d\n", i);
 }
-

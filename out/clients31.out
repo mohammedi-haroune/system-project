@@ -1,0 +1,48 @@
+groupe de sema deja creer et son id est : 0
+Segment memoire existe deja id:1572869
+Inscription d'un nouveau client 2449 
+--------------Clients 1--------------
+client 2449 a fait 0 tours
+--------------Clients--------------
+client 2449: je vais monter
+lecture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 1, nbDebarques = 0
+client 2449: je suis en balade
+client 2449: FIN de la balade je descend
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 1
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 2
+client 2449 fin de tours numéro 1
+--------------Clients 4--------------
+client 2449 a fait 1 tours
+client 2484 a fait 1 tours
+client 2518 a fait 0 tours
+client 2552 a fait 0 tours
+--------------Clients--------------
+client 2449: je vais monter
+lecture nbEmbarques: State : nbEmbarques = 2, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+client 2449: je suis en balade
+client 2449: FIN de la balade je descend
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 2
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+client 2449 fin de tours numéro 2
+--------------Clients 4--------------
+client 2449 a fait 2 tours
+client 2484 a fait 2 tours
+client 2518 a fait 1 tours
+client 2552 a fait 0 tours
+--------------Clients--------------
+client 2449: je vais monter
+lecture nbEmbarques: State : nbEmbarques = 2, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+client 2449: je suis en balade
+client 2449: FIN de la balade je descend
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 1
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 2
+client 2449 fin de tours numéro 3
+--------------Clients 4--------------
+client 2449 a fait 3 tours
+client 2484 a fait 3 tours
+client 2518 a fait 2 tours
+client 2552 a fait 1 tours
+--------------Clients--------------
