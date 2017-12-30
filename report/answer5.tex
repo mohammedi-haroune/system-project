@@ -1,0 +1,26 @@
+\subsection{Question 5}
+\subsubsection{Solution Théorique}
+La solution proposé est d'écrire une fonction \texttt{join(n)} qui appele \texttt{P} sur un sémaphore
+(c'est elle qui va le crée lors du premier appele) pour les premiers (N - 1)
+processus sauf le dernier pour le quelle elle appellera \texttt{V} en boucle
+pour réveiller tout les (N - 1) processus bloqués.
+
+\subsubsection{Implementaion}
+Pour savoir le nombre de nombre de processus qui attend dans la file d'un
+sémaphore donée on a implementé une fonction \texttt{getNConf} qui fait appele à
+la fonction \texttt{semctl} avec le flag \texttt{GETNCNT}
+
+La fonction \texttt{join(n)} avec l'utlisation de la fonction \texttt{semget}
+avec les flags \texttt{IPC\_CREATE | IPC\_EXCL | 0666} vérifie si un sémaphore
+est créer. si oui elle vérifie la valuer de sémaphore (fonction
+\texttt{getNConf}) si la valeur est inférieur à \textbf{N} elle appele
+\texttt{V} en boulce sur le sémaphore crée précedement sinon elle \texttt{P}
+pour bloquer le processus. dans le cas où le groupe du sémaphore est n'est pas
+créer (\texttt{semget} retourne \textbf{-1}) la fonction créer un et
+l'initialise à \textbf{0}.
+
+\subsubsection{Resultats de l'execution avec \texttt{N = 3}}
+
+\lstinputlisting[caption=Processus 1, style=Bash]{../out/b1.out}
+\lstinputlisting[caption=Processus 2, style=Bash]{../out/b2.out}
+\lstinputlisting[caption=Processus 3, style=Bash]{../out/b3.out}
