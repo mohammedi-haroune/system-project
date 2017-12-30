@@ -1,0 +1,28 @@
+groupe de sema deja creer et son id est : 65536
+Initialisation des sémaphores : 
+mutex1          --> 1
+mutex1          --> 1
+semEmbarquement --> 0
+semDebarquement --> 0
+semTousAbord    --> 0
+semTousDehors   --> 0
+Segment memoire existe deja id:18776071
+ecriture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+nouveau chargement tournée numéro 1
+processus voiture entraine de rouler
+processus voiture prêt pour le déchargement
+nouveau chargement tournée numéro 2
+processus voiture entraine de rouler
+processus voiture prêt pour le déchargement
+nouveau chargement tournée numéro 3
+processus voiture entraine de rouler
+processus voiture prêt pour le déchargement
+nouveau chargement tournée numéro 4
+processus voiture entraine de rouler
+processus voiture prêt pour le déchargement
+nouveau chargement tournée numéro 5
+processus voiture entraine de rouler
+processus voiture prêt pour le déchargement
+nouveau chargement tournée numéro 6
+processus voiture entraine de rouler

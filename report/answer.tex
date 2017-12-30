@@ -1,0 +1,20 @@
+\subsection{Question 1}
+\subsubsection{Implementaion}
+Pour l'implémentation du problème donnée en utilisant le système \texttt{IPC V},
+on a définit les sémaphores indiqué dans la solution théorique donnée à l'aide
+des appels système  linux \texttt{semget, semctl} et une mémoire partagée pour
+sauvegarder le nombre de clients embarquées et débarquées (la structure
+\texttt{state}). les mémoires partagées sont gérées à l'aide des appels système 
+\texttt{shmget, shmat}. Notant que l'utlisation de ces appels système nécessite la création d'un clé \texttt{key\_t}.
+
+\subsubsection{Exécution avec \texttt{N = 4} et \texttt{P = 3}}
+Pour exécuter \texttt{P} processus on a écrit un programme \texttt{run\_clients}
+qui prends \texttt{N} comme  paramètre du \texttt{main} et qui \texttt{N}
+processus clients en utlisant les fonctions \texttt{fork, execlp}.
+
+Voici les sorties de l'exécution des processus :
+
+\lstinputlisting[caption=Voiture.c, style=Bash]{../question1out/voiture.out}
+\lstinputlisting[caption=run\_clients.c, style=Bash]{../question1out/run_clients.out}
+
+
