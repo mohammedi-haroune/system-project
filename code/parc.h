@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 // Created by mohammedi on 12/25/17.
 //
+=======
+// shared memory helpers
+>>>>>>> parc/question4
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,6 +12,7 @@
 #include <sys/shm.h>
 #include <sys/sem.h>
 #include <unistd.h>
+<<<<<<< HEAD
 #include <stdbool.h>
 
 #define mutex1 0 // mutex1 1initialise a 1. Protéger la variable nbEmbarques.
@@ -48,6 +53,18 @@ void initialiseClients(int shmid) {
   s = shmat(shmid,s,0);
   s->nbClients = 0;
 }
+=======
+
+#define mutex1 0 // mutex1 1initialise a 1. Protéger la variable nbEmbarques.
+#define mutex2 1 // mutex2 initialise a 1. Protéger la variable nbDebarques.
+#define semEmbarquement 2 //  pour bloquer les clients avant d'embarquer.
+#define semDebarquement 3 // sémaphore pour bloquer les clients avant de descendre.
+#define semTousAbord 4 //sémaphore pour signaler au processus voiture que P clients
+#define semTousDehors 5 //sémaphore pour signaler au processus voiture que tout les clients sont maintenant descendus, la voiture peut faire un autre tour avec un autre groupe.
+#define p 3
+#define shared "shared"
+#define SEMNUM 6
+>>>>>>> parc/question4
 
 int createshm(key_t key, size_t __size) {
   int shmid = shmget(key,__size,IPC_CREAT|IPC_EXCL|0666);
@@ -62,6 +79,14 @@ int createshm(key_t key, size_t __size) {
   return shmid;
 }
 
+<<<<<<< HEAD
+=======
+typedef struct data{
+  int nbEmbarques;
+  int nbDebarques;
+} state;
+
+>>>>>>> parc/question4
 void printState(state* s) {
   printf("State : nbEmbarques = %d, nbDebarques = %d\n", s->nbEmbarques, s->nbDebarques);
 }
@@ -102,6 +127,7 @@ void setNbDebarques(int shmid, int nb) {
   printf("ecriture nbDebarques: ");
   printState(s);
 }
+<<<<<<< HEAD
 
 int clientIndex(int clients[]) {
   int pid = getpid();
@@ -149,3 +175,5 @@ bool peutTourner(int shmid) {
   }
   return s->tours[index] < MAX_TOURS;
 }
+=======
+>>>>>>> parc/question4

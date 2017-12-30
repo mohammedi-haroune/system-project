@@ -9,7 +9,10 @@
 #include <sys/sem.h>
 #include <unistd.h>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parc/question4
 //copied from the man semctl
 union semun {
   int              val;    /* Value for SETVAL */
@@ -67,7 +70,11 @@ int P(int semid, unsigned short id) {
   struct sembuf op;
   op.sem_num= id;  /* semaphore number */
   op.sem_op =-1;   /* semaphore operation */
+<<<<<<< HEAD
   op.sem_flg=SEM_UNDO;  /* operation flags */
+=======
+  op.sem_flg=0;  /* operation flags */
+>>>>>>> parc/question4
 
   return semop(semid, &op, 1);
 }
@@ -95,3 +102,19 @@ int Z(int semid, unsigned short id) {
   return semop(semid,&op,1);
 
 }
+<<<<<<< HEAD
+=======
+
+int Ptimed(int semid, unsigned short id, int seconds) {
+  struct sembuf op;
+  op.sem_num= id;  /* semaphore number */
+  op.sem_op =-1;   /* semaphore operation */
+  op.sem_flg=0;  /* operation flags */
+  struct timespec *timout = malloc(sizeof(struct timespec));
+  timout->tv_sec = seconds; // nombre de secondes == nombre de secondes en entrée
+  timout->tv_nsec = 0; //nombre des nanos secondes == 0. on ne s'interesse qu'au secondes
+
+  return semtimedop(semid, &op, 1, timout);
+}
+
+>>>>>>> parc/question4

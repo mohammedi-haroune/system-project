@@ -19,6 +19,7 @@ int main() {
   setbuf(stdout, NULL);
 
   key_t key = ftok(shared, 'p');
+<<<<<<< HEAD
   int semid = createsem(key, 6);
   int shmid = createshm(key, sizeof(state));
 
@@ -29,6 +30,13 @@ int main() {
   while(peutTourner(shmid)){
     V(semid, mutex3);
 
+=======
+  int semid = createsem(key, SEMNUM);
+  int shmid = createshm(key, sizeof(state));
+
+
+  while(1){
+>>>>>>> parc/question4
     P(semid, semEmbarquement); //faire la chaine pour monter, attendre d’être libéré par le processus voiture
 
     embarquement(); //affiche un message : “client pid: je vais monter”
@@ -68,6 +76,7 @@ int main() {
     V(semid, mutex2);
 
     sleep(rand() % 2);
+<<<<<<< HEAD
 
     P(semid, mutex3);
     finTour(shmid);
@@ -75,6 +84,9 @@ int main() {
   }
   //si la condition est fausse on doit quand meme libérer le mutex3
   V(semid, mutex3);
+=======
+  }
+>>>>>>> parc/question4
 }
 
 void enBalade() {

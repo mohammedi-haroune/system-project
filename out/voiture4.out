@@ -1,0 +1,55 @@
+groupe de sema deja creer et son id est : 32769
+Initialisation des sémaphores : 
+mutex1          --> 1
+mutex2          --> 1
+semEmbarquement --> 0
+semDebarquement --> 0
+semTousAbord    --> 0
+semTousDehors   --> 0
+Segment memoire existe deja id:2424841
+ecriture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+nouveau chargement tournée numéro 1
+Chargmemet : temps d'attente 5 secondes ecoulé
+lecture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+processus voiture prêt pour le déchargement
+lecture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+calling Ptimed(semid, semTousDehors, timeout)Déchargement: temps d'attente 5 secondes ecoulé
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+nouveau chargement tournée numéro 2
+Chargmemet : temps d'attente 5 secondes ecoulé
+lecture nbEmbarques: State : nbEmbarques = 2, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+tourner quand même avec 2 clients 
+processus voiture entraine de rouler
+processus voiture prêt pour le déchargement
+lecture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 2
+calling Ptimed(semid, semTousDehors, timeout)Déchargement: temps d'attente 5 secondes ecoulé
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 2
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+nouveau chargement tournée numéro 3
+Chargmemet : temps d'attente 5 secondes ecoulé
+lecture nbEmbarques: State : nbEmbarques = 2, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+tourner quand même avec 2 clients 
+processus voiture entraine de rouler
+processus voiture prêt pour le déchargement
+lecture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 1
+calling Ptimed(semid, semTousDehors, timeout)Déchargement: temps d'attente 5 secondes ecoulé
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 2
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+nouveau chargement tournée numéro 4
+Chargmemet : temps d'attente 5 secondes ecoulé
+lecture nbEmbarques: State : nbEmbarques = 2, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+tourner quand même avec 2 clients 
+processus voiture entraine de rouler
+processus voiture prêt pour le déchargement
+lecture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 1
+calling Ptimed(semid, semTousDehors, timeout)
