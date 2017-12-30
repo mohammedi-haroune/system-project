@@ -1,25 +1,47 @@
 \subsection{Question 1}
 \subsubsection{Implementaion}
-Pour l'implémentation du problème donnée en utilisant le système \texttt{IPC V},
-on a définit les sémaphores indiqué dans la solution théorique donnée à l'aide
-des appels système  linux \texttt{semget, semctl} et une mémoire partagée pour
-sauvegarder le nombre de clients embarquées et débarquées (la structure
-\texttt{state}). les mémoires partagées sont gérées à l'aide des appels système 
-\texttt{shmget, shmat}. Notant que l'utlisation de ces appels système nécessite la création d'un clé \texttt{key\_t}.
+Pour l'implémentation du limite des trounée pour chaque clients, on doit
+sauvegarder le nombre du tournée pour chaque clients. Pour cela on a définie les
+variables \texttt{int nbClients}, \texttt{int clients[]} et \texttt{int
+  tours[]} dans la structure \texttt{state}.
+\texttt{nbClients} contients le nombre de clients dans le systèmes.
+\texttt{clients} contients les \textbf{pids} des clients dans le système.
+\texttt{tours} contients le nombre de tournées pour chaque \textbf{pid} dans
+\texttt{clients}.
 
-Pour facilité la tache de compilation des différents fichiers \textbf{C} on a
-utlisé l'outil \textbf{CMake}. pour cela on écrit le fichier
-\texttt{CMakeLists.txt} qui contient tout les information concernant les fichier
-du project.
+on définie aussi les variables \texttt{MAX_TOURS} qui peut être mise à jourer
+par le processus voiture et \texttt{MAX_CLIENTS} qui contient le nombre maximum
+du clients qui peut être enregister dans les tableaux précedents.
+
+Une sémahpore \texttt{mutex3} pour protéger les variables \texttt{int nbClients}, \texttt{int clients[]} et \texttt{int
+  tours[]}
+
+\textbf{Note :} une milleur solution peut etre implementer en utilisant les structure
+dynamiques.
+
+L'idée est que chaque nouveau clients (son \textbf{pid}) est sauvegarder dans la
+case numéro \texttt{nbClients} du tableau \textbf{clients} et son nombre de
+tournée associer est sauvegardé dans la case numéro \texttt{nbClients} du
+tableau \texttt{tours}.
+
+A l'arrivé du clients il fait appele à la foction \texttt{inscription} qui lui
+enregister dans le tableau \texttt{clients} et initialise son nombre de tours à zero.
+
+Pour pouvoir fait une tournée (la condition d'entrée) il fait appele à la
+fonction  \texttt{peutTourner} qui retourne \texttt{vrai} que si le nombre de
+tours du clients est inférieur au nombre maximale de trournée
+
+Chaque fin de tournées le processus cliens fait appele à la fonction
+\texttt{finTour} qui incrémente son nombre de tours.
 
 \subsubsection{Exécution avec \texttt{N = 4} et \texttt{P = 3}}
 Pour exécuter \texttt{P} processus on a écrit un programme \texttt{run\_clients}
-qui prends \texttt{N} comme  paramètre du \texttt{main} et qui \texttt{N}
+qui prends \texttt{N} comme  paramètre du \texttt{main} et qui crée \texttt{N}
 processus clients en utlisant les fonctions \texttt{fork, execlp}.
 
 Voici les sorties de l'exécution des processus :
 
-\lstinputlisting[caption=Voiture.c, style=Bash]{../question1out/voiture.out}
-\lstinputlisting[caption=run\_clients.c, style=Bash]{../question1out/run_clients.out}
+%\lstinputlisting[caption=Voiture.c, style=Bash]{../out/voiture.out}
+%\lstinputlisting[caption=run\_clients.c, style=Bash]{../out/run_clients.out}
 
 

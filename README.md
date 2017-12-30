@@ -1,20 +1,47 @@
-# Question 1 (Implementaion de la solution)
+# Question 3 (Limite du nombre de tounrées)
 ## Enoncé
 
-> Fixer P dans les deux programmes et passer N au clavier. Lancer les deux programmes dans deux terminaux différents. En prenant le soin de toujours lancer le processus voiture d'abord (car c'est lui qui va créer tout ce qui est nécessaire pour le problème, les sémaphores par exp).
+> On souhaite maintenant limiter le nombre de tournées pour chaque client a un nombre déterminé par le processus voiture (et qu'il peut changer lui même bien sur). Modifier le code des processus client pour prendre en considération cette limitation (la condition de la boucle while(true)) en respectant les contraintes suivantes : 
+> - Le processus voiture lui doit rester toujours en vie en attente de nouveau clients qui arrivent (des processus clients qu'on lance a partir d'un autre terminal par exemple).
+> - Réaliser un teste de cette situation. 
 
 ## Réponse
-Pour l’implémentation du problème donnée en utilisant le système
-`IPC V`, on a définit les sémaphores indiqué dans la solution théorique
-donnée à l’aide des appels système linux `semget, semctl` et une mémoire
-partagée pour sauvegarder le nombre de clients embarquées et débarquées
-(la structure `state`). les mémoires partagées sont gérées à l’aide des
-appels système `shmget, shmat`. Notant que l’utlisation de ces appels
-système nécessite la création d’un clé `key_t`.
+### Implementaion
 
-Pour facilité la tache de compilation des différents fichiers **C** on a
-utlisé l’outil **CMake**. Pour cela on a écrit le fichier `CMakeLists.txt`
-qui contient tout les information concernant les fichiers du project.
+Pour l’implémentation du limite des trounée pour chaque clients, on doit
+sauvegarder le nombre du tournée pour chaque clients. Pour cela on a
+définie les variables `int nbClients`, `int clients[]` et `int tours[]`
+dans la structure `state`. `nbClients` contients le nombre de clients
+dans le systèmes. `clients` contients les **pids** des clients dans le
+système. `tours` contients le nombre de tournées pour chaque **pid**
+dans `clients`.
+
+on définie aussi les variables `MAX_TOURS` qui peut être mise à jourer
+par le processus voiture et `MAX_CLIENTS` qui contient le nombre maximum
+du clients qui peut être enregister dans les tableaux précedents.
+
+Une sémahpore `mutex3` pour protéger les variables `int nbClients`,
+`int clients[]` et `int tours[]`
+
+**Note :** une milleur solution peut etre implementer en utilisant les
+structure dynamiques.
+
+L’idée est que chaque nouveau clients (son **pid**) est sauvegarder dans
+la case numéro `nbClients` du tableau **clients** et son nombre de
+tournée associer est sauvegardé dans la case numéro `nbClients` du
+tableau `tours`.
+
+A l’arrivé du clients il fait appele à la foction `inscription` qui lui
+enregister dans le tableau `clients` et initialise son nombre de tours à
+zero.
+
+Pour pouvoir fait une tournée (la condition d’entrée) il fait appele à
+la fonction `peutTourner` qui retourne `vrai` que si le nombre de tours
+du clients est inférieur au nombre maximale de trournée
+
+Chaque fin de tournées le processus cliens fait appele à la fonction
+`finTour` qui incrémente son nombre de tours.
+
 
 ## Basic usage
 le dossier `code` contient les tois programmes suivants : `voiture`, `clients` et `run_clients`.
