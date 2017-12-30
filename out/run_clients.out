@@ -1,0 +1,46 @@
+groupe de sema deja creer et son id est : 32769
+Segment memoire existe deja id:2424841
+groupe de sema deja creer et son id est : 32769
+Segment memoire existe deja id:2424841
+client 5634: je vais monter
+client 5635: je vais monter
+lecture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 1, nbDebarques = 0
+client 5634: je suis en balade
+lecture nbEmbarques: State : nbEmbarques = 1, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 2, nbDebarques = 0
+client 5635: je suis en balade
+client 5634: FIN de la balade je descend
+client 5635: FIN de la balade je descend
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 1
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 1
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 2
+client 5635: je vais monter
+client 5634: je vais monter
+lecture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 1, nbDebarques = 0
+client 5635: je suis en balade
+lecture nbEmbarques: State : nbEmbarques = 1, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 2, nbDebarques = 0
+client 5634: je suis en balade
+client 5635: FIN de la balade je descend
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+client 5634: FIN de la balade je descend
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 1
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 1
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 2
+client 5634: je vais monter
+client 5635: je vais monter
+lecture nbEmbarques: State : nbEmbarques = 0, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 1, nbDebarques = 0
+client 5634: je suis en balade
+lecture nbEmbarques: State : nbEmbarques = 1, nbDebarques = 0
+ecriture nbEmbarques: State : nbEmbarques = 2, nbDebarques = 0
+client 5635: je suis en balade
+client 5634: FIN de la balade je descend
+client 5635: FIN de la balade je descend
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 0
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 1
+lecture nbDebarques: State : nbEmbarques = 0, nbDebarques = 1
+ecriture nbDebarques: State : nbEmbarques = 0, nbDebarques = 2

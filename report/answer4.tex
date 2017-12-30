@@ -1,0 +1,35 @@
+\subsection{Question 4}
+\subsubsection{Pricipe du \texttt{semtimedop}}
+\texttt{semtimedop()} se comporte comme \texttt{semop()} sauf que dans le cas
+où le processus doit dormir, la durée maximale du sommeil est limitée par la
+valeur spécifiée dans la structure \texttt{ timespec } dont l'adresse est
+transmise dans le paramètre timeout. Si la limite indiquée a été atteinte,
+\texttt{semtimedop()} échoue avec errno contenant \texttt{ EAGAIN } (et aucune
+opération de sops n'est réalisée).
+
+\subsubsection{Solution Théorique}
+l'utilisation d'une fonction \texttt{Ptimed} au lieu de \texttt{P} dans le processus
+voiture avec le sémaphore \texttt{semTousAbord} nous
+permet de garantir une attente borné dans la file du sémaphore en question.
+Après la libération le processus voiture remet a zéro la valeur du variable
+\texttt{nbEmbarques} et du sémaphore \texttt{semEmbarquemnt} (appeles successifs du
+\texttt{V} pour bloquer les eventueles clients qui arrivent). Il vérifie si il
+ya plus de \texttt{C / 3} client dans la variable \texttt{nbEmbarques} si oui il
+commence a tourner (fonction \texttt{rouler()}) sinon il décharge les clients et
+tente une autre fois.
+
+lors du déchargement on fait la meme chose avec la variable
+\texttt{nbDebarques} et les sémaphores \texttt{semDebarquement} et \texttt{semTousDehors}.
+
+\subsubsection{Implementaion}
+la valeur \texttt{EAGAIN} dans \texttt{errno} nous permet de savoir si la
+terminison du fonction \texttt{semtimedop} est dû à l'écoulement du temps
+spécifiée dans \texttt{timeout}, les valeurs des variables et des sémaphores
+sont réinitialisées à l'aide des fonctions défine dans notre librarie
+\texttt{semaphore1.h} notament \texttt{setNbDebarques}, \texttt{setNbEmbarques} et
+\texttt{V(semid, id}.
+
+\subsubsection{Resultats de l'execution}
+
+\lstinputlisting[caption=Voiture.c, style=Bash]{../out/voiture.out}
+\lstinputlisting[caption=run\_clients.c, style=Bash]{../out/run_clients.out}
