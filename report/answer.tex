@@ -1,25 +1,43 @@
-\subsection{Question 1}
-\subsubsection{Implementaion}
-Pour l'implémentation du problème donnée en utilisant le système \texttt{IPC V},
-on a définit les sémaphores indiqué dans la solution théorique donnée à l'aide
-des appels système  linux \texttt{semget, semctl} et une mémoire partagée pour
-sauvegarder le nombre de clients embarquées et débarquées (la structure
-\texttt{state}). les mémoires partagées sont gérées à l'aide des appels système 
-\texttt{shmget, shmat}. Notant que l'utlisation de ces appels système nécessite la création d'un clé \texttt{key\_t}.
+\subsection{Question 2}
+l'envoie un signal kill a un des processus client pendant que la
+voiture est en tournée (commande: \texttt{ kill -9 pid}) bloque le processuss
+voiture et tout autres processus clients dans le systems. le
+blockage est dû au vaiable \texttt{nbDebarques} qui ne sera jamais égales à
+\texttt{P} et donc le processus voiture se block dans l'instruction
+\texttt{P(semid, semTousDehors)} et les processus clients se block dans
+l'instruction \texttt{P(semid, semEmbarquement)}.
 
-Pour facilité la tache de compilation des différents fichiers \textbf{C} on a
-utlisé l'outil \textbf{CMake}. pour cela on écrit le fichier
-\texttt{CMakeLists.txt} qui contient tout les information concernant les fichier
-du project.
+le flag \texttt{SEM\_UNDO} permet au processus de libérer les sémaphores dans le
+quelle il a l'acces avant sa terminision  (remetre en cause les
+différentes modifications sur les différentes sémaphores) en utilisant une variable special
+\texttt{semadj} qui est définie pour chaque processus et pour chaque semaphore
+et qui sauvgarde la somme de toutes les operations effectuer par chaque
+processus sur chaque sémaphore.
 
-\subsubsection{Exécution avec \texttt{N = 4} et \texttt{P = 3}}
-Pour exécuter \texttt{P} processus on a écrit un programme \texttt{run\_clients}
-qui prends \texttt{N} comme  paramètre du \texttt{main} et qui \texttt{N}
-processus clients en utlisant les fonctions \texttt{fork, execlp}.
+Avec l'utlisation de ce flag dans les opérations des sémaphores
+\texttt{P} et \texttt{V} le problème ne sera pas réglé puisque il été
+engendré par la valeur du variable \texttt{nbDebarques} non pas par des valuers
+de sémaphores.
 
-Voici les sorties de l'exécution des processus :
+On peut réglé le problème si on utilise un sémaphore \texttt{semDedans} qui sera
+incréménté a chaque embarquement d'un processus et décrementé à chaque
+débarquement, comme ça si on tue un processus qui a monté et qui n'a pas encore
+decendu (c'est la cause du problème précedent) la valeur du sémaphore
+\texttt{semDedans} va décrementer en specifiant le flag \texttt{SEM\_UNDO}, et
+donc le processus voiture ne va pas bloquer puisque le nombre des clients dans
+la voiture 
 
-\lstinputlisting[caption=Voiture.c, style=Bash]{../question1out/voiture.out}
-\lstinputlisting[caption=run\_clients.c, style=Bash]{../question1out/run_clients.out}
+\textbf{Détail sur \texttt{SEM\_UNDO}}
 
+\begin{itemize}
+\item
+  si la valeur du sémaphore est modifié par \texttt{SETVALL} ou \texttt{SETALL} la
+  valeur du variable special \texttt{semadj} est reinitialisé. On doit pensé à
+  utilisé les flags du système \texttt{CLONE\_SYSTEMV} dans ce cas.\\
+
+\item
+  l'OS linux applique la stratégie \textbf{décrementer la valeur tant que possible} lors du
+  remetre en cause des operations effectuer par un processus sur un sémaphore
+  (effet du flag \texttt{SEM\_UNDO}).
+\end{itemize}
 

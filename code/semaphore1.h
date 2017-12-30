@@ -67,7 +67,7 @@ int P(int semid, unsigned short id) {
   struct sembuf op;
   op.sem_num= id;  /* semaphore number */
   op.sem_op =-1;   /* semaphore operation */
-  op.sem_flg=0;  /* operation flags */
+  op.sem_flg=SEM_UNDO;  /* operation flags */
 
   return semop(semid, &op, 1);
 }
