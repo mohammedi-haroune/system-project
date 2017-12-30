@@ -7,6 +7,11 @@ sauvegarder le nombre de clients embarquées et débarquées (la structure
 \texttt{state}). les mémoires partagées sont gérées à l'aide des appels système 
 \texttt{shmget, shmat}. Notant que l'utlisation de ces appels système nécessite la création d'un clé \texttt{key\_t}.
 
+Pour facilité la tache de compilation des différents fichiers \textbf{C} on a
+utlisé l'outil \textbf{CMake}. pour cela on écrit le fichier
+\texttt{CMakeLists.txt} qui contient tout les information concernant les fichier
+du project.
+
 \subsubsection{Exécution avec \texttt{N = 4} et \texttt{P = 3}}
 Pour exécuter \texttt{P} processus on a écrit un programme \texttt{run\_clients}
 qui prends \texttt{N} comme  paramètre du \texttt{main} et qui \texttt{N}
