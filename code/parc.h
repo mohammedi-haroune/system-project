@@ -20,7 +20,7 @@
 #define p 3
 #define SEMNUM 7
 #define shared "shared"
-#define MAX_CLIENTS 5
+#define MAX_CLIENTS 6
 
 int MAX_TOURS = 3; // le nombre de tours maximum pour chaque clients.
 
