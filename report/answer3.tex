@@ -1,4 +1,4 @@
-\subsection{Question 1}
+\subsection{Question 3}
 \subsubsection{Implementaion}
 Pour l'implémentation du limite des trounée pour chaque clients, on doit
 sauvegarder le nombre du tournée pour chaque clients. Pour cela on a définie les
@@ -9,8 +9,8 @@ variables \texttt{int nbClients}, \texttt{int clients[]} et \texttt{int
 \texttt{tours} contients le nombre de tournées pour chaque \textbf{pid} dans
 \texttt{clients}.
 
-on définie aussi les variables \texttt{MAX_TOURS} qui peut être mise à jourer
-par le processus voiture et \texttt{MAX_CLIENTS} qui contient le nombre maximum
+on définie aussi les variables \texttt{MAX\_TOURS} qui peut être mise à jourer
+par le processus voiture et \texttt{MAX\_CLIENTS} qui contient le nombre maximum
 du clients qui peut être enregister dans les tableaux précedents.
 
 Une sémahpore \texttt{mutex3} pour protéger les variables \texttt{int nbClients}, \texttt{int clients[]} et \texttt{int
@@ -41,7 +41,10 @@ processus clients en utlisant les fonctions \texttt{fork, execlp}.
 
 Voici les sorties de l'exécution des processus :
 
-%\lstinputlisting[caption=Voiture.c, style=Bash]{../out/voiture.out}
-%\lstinputlisting[caption=run\_clients.c, style=Bash]{../out/run_clients.out}
+\lstinputlisting[caption=Processus Voiture, style=Bash]{../out/voiture3.out}
+\lstinputlisting[caption=Processus Client 1, style=Bash]{../out/clients1.out}
+\lstinputlisting[caption=Processus Client 2, style=Bash]{../out/clients2.out}
+\lstinputlisting[caption=Processus Client 3, style=Bash]{../out/clients3.out}
+\lstinputlisting[caption=Processus Client 4, style=Bash]{../out/clients4.out}
 
 

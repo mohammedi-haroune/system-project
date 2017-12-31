@@ -1,0 +1,21 @@
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage[margin=2cm, top=2cm, left=2cm]{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstdefinestyle{Bash}{
+  language=bash,
+  basicstyle=\small\ttfamily,
+  frame=single,
+  showstringspaces=false,
+  breaklines=true,
+  tabsize=4,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+  literate={á}{{\'a}}1 {ã}{{\~a}}1 {é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^ e}}1
+}
+
+
+\lstnewenvironment{bash}
+{\lstset{style=Bash}}
+{}
