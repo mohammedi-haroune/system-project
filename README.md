@@ -1,12 +1,42 @@
-# HomeWork TP System
-this repository contains code, comments, answers and all related stuff to the homework of the system class made by **MOHAMMEDI Haroune** And **KADRI Adalan**.
+#   VERSION1 : 
+>dans cette version on va traiter le cas de  rafraichisse automatiquement a chaque modification
+survenue sur les sémaphores du groupe  :
 
-# Structure 
-Our goal is to make reading the content very easy and intuitive. to do so we adopt the following structure for our workflow : 
+pour faire l'exécution de ce traitement on va suivre les étapes se-dessous
 
-1. For each question create a branch named `exercice-number/question-number`.
-2. Each branch must contain three directories named **code**, **out**, **report**.
-3. The **code** directory contain all the `C` files and also header files such as `semaphore1.h`.
-4. The **out** directory contain testing outputs and screen-shots.
-5. The report directory contain all the question related stuff to include in the final report such as **latex** files.
-6. Each branch must define it's own **README.md**
+
+** les etapes a suivre : **
+
+
+-	commande1 : 
+				>`>ipcs -s`                                //aprés prend un semid ( une valeur de `semid` ) et puis ..
+
+
+
+
+-	commande2 :
+				>`>gcc sem-monitor.c -o exe` 
+				>`>./exe`  `semid`                           //sachant que semid est la valeur que t'as pris/a partir du  ipcs -s
+
+
+
+
+
+-	commande3 : 
+				>`>ipcs -s -i` `semid`                       //la meme valeur
+
+
+
+
+## Resultat : 
+ >on aura les meme affichage / les resources .
+ >			si on lance la commande : '`ipcs -s -i` `semid`' et './exécutable `semid`'   ---> on aura le meme affichage   
+
+****************************************************************************************************************
+
+
+# PS:   les affichages de l'exécution de cette version sont dans ce doissier 
+
+
+
+##ENJOY!
