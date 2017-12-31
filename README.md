@@ -16,8 +16,8 @@ sachant que semid est la valeur que t'as pris/a partir du  ipcs -s
 
 
 ## Resultat : 
-Si on lance la commande : '`ipcs -s -i semid`' et `./exe semid`'   ---> on aura le meme affichage.
-![ipcs](../out/2-The result when i execute my program.png "`ipcs -s -i semid`")
+Si on lance la commande : `ipcs -s -i semid` et `./exe semid`  on aura le meme affichage.
+![ipcs](out/test.png "`ipcs -s -i semid`")
 
 
 ## ENJOY!
