@@ -1,12 +1,19 @@
-# HomeWork TP System
-this repository contains code, comments, answers and all related stuff to the homework of the system class made by **MOHAMMEDI Haroune** And **KADRI Adalan**.
+# Excercice 4 (pipe)
+##      version 1 :
+Dans cette version on va traiter que le cas de recupération des commandes et l'exécuté
+Alors une fois on lance l'exécution par exemple `./exe cmd`
+on récupére le contenu de cmd et puis on la traite comme une commande ecrite sur l'invite de commande
 
-# Structure 
-Our goal is to make reading the content very easy and intuitive. to do so we adopt the following structure for our workflow : 
+##      version 2 :
 
-1. For each question create a branch named `exercice-number/question-number`.
-2. Each branch must contain three directories named **code**, **out**, **report**.
-3. The **code** directory contain all the `C` files and also header files such as `semaphore1.h`.
-4. The **out** directory contain testing outputs and screen-shots.
-5. The report directory contain all the question related stuff to include in the final report such as **latex** files.
-6. Each branch must define it's own **README.md**
+dans la version suivante, on gérer le traitement du commande avec un processus
+cette version est presque la meme chose avec la premiére version, mais on montre
+l'aspect de creation d'un processus fils et l'affichage de son pid
+
+##      version 3 :
+
+dans la version suivante, on gérer le meme traitement  avec plusieurs processus en utilisant la fonction fork()
+et on peut dire aussi que cette version ressemle avec les deux premiers versions, mais la on traite les commande passé en argument
+*--> chaque processus exécute une commande .
+alors si on passe plusieurs commande en arguments , ils seront exécuté par la suite par les processus crée
+**PS** le nombre de processus créé egale au nombre de commande passé en argument
