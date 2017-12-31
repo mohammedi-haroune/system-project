@@ -188,12 +188,14 @@ void join(int n) {
 
   //if the number of waiting is N (couting the current process) then free them. otherwise wait
   if (waiting == n - 1) {
+    printf("last process, freeing all others\n");
     for(int i = 0; i < waiting; i++) {
       V(semid, 0);
     }
     //drop the semaphore. this gives the access for eventual other joins
     dropsem(semid);
   } else {
+    printf("waiting in the barrier\n");
     P(semid, 0);
   }
 }
