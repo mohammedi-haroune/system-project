@@ -8,7 +8,7 @@
 
 **Réponse :**
 
-le processus fils n'exécute pas l'instruction  `printf("Processus fils-FIN \n");
+le processus fils n'exécute pas l'instruction  `printf("Processus fils-FIN \n");`
 car la condition de la boucle `read(p[0],buf, 20)>0` reste toujours vérifier
 
 **Question 02 :**
