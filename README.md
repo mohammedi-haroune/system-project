@@ -1,12 +1,22 @@
-# HomeWork TP System
-this repository contains code, comments, answers and all related stuff to the homework of the system class made by **MOHAMMEDI Haroune** And **KADRI Adalan**.
+#    PIPE EXERCICE1:
+## Enoncé :
+> on récrit le programme et on l'exécute , remarque :
 
-# Structure 
-Our goal is to make reading the content very easy and intuitive. to do so we adopt the following structure for our workflow : 
+**Question 01 :**
 
-1. For each question create a branch named `exercice-number/question-number`.
-2. Each branch must contain three directories named **code**, **out**, **report**.
-3. The **code** directory contain all the `C` files and also header files such as `semaphore1.h`.
-4. The **out** directory contain testing outputs and screen-shots.
-5. The report directory contain all the question related stuff to include in the final report such as **latex** files.
-6. Each branch must define it's own **README.md**
+> Que se passera-t-il si le processus pere ne ferme pas le descripteur d'ecriture apres avoir fini d'ecrire?
+
+**Réponse :**
+
+le processus fils n'exécute pas l'instruction  `printf("Processus fils-FIN \n");
+car la condition de la boucle `read(p[0],buf, 20)>0` reste toujours vérifier
+
+**Question 02 :**
+
+> Pourquoi il faut toujours fermer les descripteurs qu'un processus n'utilise pas?
+
+**Réponse :**
+
+Car le processus fils est encore en attente pour récupérer les buf envoyé par le processus pere
+vu que le processus pere n'a pas fermé le descripteur -> le processus qui reçoit les message attends
+la fermeture du déscripteur d'ecriture pour  fini son travail
